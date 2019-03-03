@@ -5,7 +5,7 @@
 # script for 3 nodes, 2 seeds cassandra set up
 
 HOST1='172.16.49.140'
-SEED=("172.16.49.143" "172.16.49.143")
+SEED=("172.16.49.141" "172.16.49.142")
 
 
 # update IP table for host1
@@ -32,17 +32,6 @@ sudo iptables -A INPUT -p tcp -s ${SEED[0]} -m multiport --dports 7000,9042 -m s
 echo "HOST3 IP-tables successfully set\n"
 echo
 
-
-#uninstall existing java
-sudo update-alternatives --remove "java" "/usr/lib/jvm/jdk1.8.0_191/bin/java"
-sudo update-alternatives --remove "javac" "/usr/lib/jvm/jdk1.8.0_191/bin/javac"
-sudo update-alternatives --remove "javaws" "/usr/lib/jvm/jdk1.8.0_191/bin/javaws"
-
-sudo rm -r /usr/lib/jvm/jdk1.8.0_191
-sudo apt-get remove openjdk*
-sudo apt-get purge --auto-remove openjdk*
-
-
 #intall JAVA 8 and JNA
 #newer java version has a problem with cassandra
 echo "Installing JAVA 8"
@@ -64,14 +53,6 @@ echo  "Setting JAVA Path"
 echo
 #setting java path
 export JAVA_HOME=/usr/
-
-
-#uninstall existing cassandra
-sudo apt-get remove cassandra
-sudo rm -rf /var/lib/cassandra
-sudo rm -rf /var/log/cassandra
-sudo rm -rf /etc/cassandra
-
 
 #Install cassandra
 
