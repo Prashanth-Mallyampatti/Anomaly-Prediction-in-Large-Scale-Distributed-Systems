@@ -1,11 +1,11 @@
 #!/usr/bin/bash
 
-#Author: Prashanth Mallymapatti
+#Author: Prashanth Mallyampatti
 
 # script for 3 nodes, 2 seeds cassandra set up
 
-HOST1='172.16.49.140'
-SEED=("172.16.49.141" "172.16.49.142")
+HOST1='172.16.49.146'
+SEED=("172.16.49.147" "172.16.49.148")
 
 
 # update IP table for host1
@@ -29,7 +29,7 @@ sudo iptables -A INPUT -p tcp -s $HOST1 -m multiport --dports 7000,9042 -m state
 
 sudo iptables -A INPUT -p tcp -s ${SEED[0]} -m multiport --dports 7000,9042 -m state --state NEW,ESTABLISHED -j ACCEPT
 
-echo "HOST3 IP-tables successfully set\n"
+echo "HOST3 IP-tables successfully set"
 echo
 
 #intall JAVA 8 and JNA
@@ -54,10 +54,10 @@ echo
 #setting java path
 export JAVA_HOME=/usr/
 
-#Install cassandra
-
 
 sudo apt install curl
+
+#Download Debian packages
 
 echo "deb http://www.apache.org/dist/cassandra/debian 311x main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
 
@@ -65,14 +65,13 @@ curl https://www.apache.org/dist/cassandra/KEYS | sudo apt-key add -
 
 sudo apt-get -y update
 
-#single cassandra install isn't updating the config files
-sudo apt-get -y install cassandra=2.2.6
+#Install Cassandra and Cassandr Tools
 sudo apt-get -y install cassandra
 sudo apt-get -y install cassandra-tools
 sudo service cassandra stop
 
 #remove any data created so as to update the config files
-sudo rm -rf /var/lib/cassandra/data/system*
+sudo rm -rf /var/lib/cassandra/data
 
 #Get your own IP address
 IP_ADDR=`/sbin/ifconfig ens33 | grep 'inet' | cut -d: -f2 | awk '{ print $2}'`
@@ -87,16 +86,16 @@ ALL_SEEDS=`join "," ${SEED[@]}`
 #echo $ALL_SEEDS
 
 # Update seed ip addresses to the config file
-sudo sed -i 's/- seeds: "127.0.0.1"/- seeds: "'${ALL_SEEDS[@]}'"/g' /etc/cassandra/cassandra.yaml
+sudo sed -i 's/- seeds: .*/- seeds: "'${ALL_SEEDS[@]}'"/g' /etc/cassandra/cassandra.yaml
 
 #Update listen address to host's IP address
-sudo sed -i 's/listen_address: localhost/listen_address: '${IP_ADDR}'/g' /etc/cassandra/cassandra.yaml
+sudo sed -i 's/listen_address: .*/listen_address: '${IP_ADDR}'/g' /etc/cassandra/cassandra.yaml
 
 #Update RPC address to host's IP address
-sudo sed -i 's/rpc_address: localhost/rpc_address: '${IP_ADDR}'/g' /etc/cassandra/cassandra.yaml
+sudo sed -i 's/rpc_address: .*/rpc_address: '${IP_ADDR}'/g' /etc/cassandra/cassandra.yaml
 
 #Remove if any auto_bootstraps added
-sudo sed -i '${/auto_bootstrap/d;}' /etc/cassandra/cassandra.yaml
+sudo sed -i '${/auto_bootstrap: .*/d;}' /etc/cassandra/cassandra.yaml
 
 #Add new auto_bootstrap: false for seed nodes and true for non-seed node 
 if [[ ${SEED[*]} =~ $IP_ADDR ]]; then
@@ -107,7 +106,7 @@ fi
 
 
 sudo service cassandra stop
-sudo rm -rf /var/lib/cassandra/data/system*
+sudo rm -rf /var/lib/cassandra/data
 
 #Start Cassandra Service
 sudo service cassandra start
