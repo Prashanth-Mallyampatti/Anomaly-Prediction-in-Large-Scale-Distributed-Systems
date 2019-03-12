@@ -14,7 +14,7 @@ LINE_NUM=`nodetool gossipinfo | grep -n /$IP_ADDR | cut -c1-1`
 
 LINE_NUM=$((LINE_NUM + 3))
 
-LINE=`nodetool gossipinfo | grep -n 'LEFT' | cut -c1-1`
+LINE=`nodetool gossipinfo | grep -n 'LEFT' | cut -d: -f1`
 
 if [ "$LINE" == "$LINE_NUM" ]
 then

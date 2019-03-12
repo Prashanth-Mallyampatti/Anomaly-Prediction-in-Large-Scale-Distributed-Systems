@@ -4,8 +4,8 @@
 
 # script for 3 nodes, 2 seeds cassandra set up
 
-HOST1='172.16.49.146'
-SEED=("172.16.49.147" "172.16.49.148")
+HOST1='172.16.49.149'
+SEED=("172.16.49.150" "172.16.49.151")
 
 
 # update IP table for host1
