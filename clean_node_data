@@ -12,4 +12,4 @@ then
 	echo "Execute command: yes Y | bash ./cassandra.sh to join/create the node to the existing/new ring"
 else
 	echo "Couldn't clean Node's Data"
-
+fi
