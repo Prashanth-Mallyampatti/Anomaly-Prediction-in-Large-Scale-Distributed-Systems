@@ -5,7 +5,7 @@
 #Install stress-ng if not already installed
 
 if ! stress-ng --version >/dev/null 2>&1; then
-    sudo apt-install stress-ng
+    sudo apt-get install stress-ng
 fi
 
 #Injecting External Faults
