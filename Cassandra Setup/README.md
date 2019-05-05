@@ -1,4 +1,4 @@
-Setup 3-node cassandra cluster
+# Setup 3-node cassandra cluster
 
 <br /> Open these ports: `22`, `7000`, `7001`, `7199`, `9042`, `9160`, `9142` 
 <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;which are SSH port, Cassandra inter-node cluster communication, Cassandra SSL inter-node cluster communication, Cassandra JMX monitoring port, Cassandra client port, Cassandra client port (Thrift), Default for native_transport_port_ssl respectively.
