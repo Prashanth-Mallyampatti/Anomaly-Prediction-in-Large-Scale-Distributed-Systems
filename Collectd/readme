@@ -1,0 +1,1 @@
+In order to make the proposed system work, collectd clients must be installed on all nodes of the distributed system and the monitoring server must host a collectd server.
