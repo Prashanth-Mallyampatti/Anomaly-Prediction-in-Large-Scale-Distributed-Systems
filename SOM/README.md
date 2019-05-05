@@ -1,4 +1,4 @@
-# Anomaly Prediction in Large Scale Distributed Systems using Self Organising Maps
+# Self Organising Maps
 
 Step 1: Run each cell of the [`trainSOM.ipynb`](https://github.ncsu.edu/rnarang/ADS_SOM/blob/master/trainSOM.ipynb), this will train the model and create a pickle file of the trained model and the iPython notebook. Make sure that the training data is present in the same directory as the IPython notebook.
 
