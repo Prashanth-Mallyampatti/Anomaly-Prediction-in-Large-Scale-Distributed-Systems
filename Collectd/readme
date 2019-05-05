@@ -1,5 +1,9 @@
 In order to make the proposed system work, collectd clients must be installed on all nodes of the distributed system and the monitoring server must host a collectd server.
 
+Note : We observed that the current collectd and generic-jmx plugin have been compiled using higher versions of java due to which certain
+features do not work in our current setup. So, in order to reproduce our setup, please replace collectd.jar and generic-jmx jars with
+the ones provided in this repository.
+
 Before starting with the installation, the following symbolic link must be created as collectd is unable to locate the libjvm.so file. Based
 on your java installation, execute the one that seems relevant. If you have been following our repository for the system setup, then we
 highly recommend you work with the same java versions as given below. ONly these versions have been tested for compatibility with the
