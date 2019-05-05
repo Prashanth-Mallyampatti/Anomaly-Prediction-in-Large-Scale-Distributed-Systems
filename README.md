@@ -1,3 +1,7 @@
 # Anomaly-Prediction-in-Large-Scale-Distributed-Systems
 
 <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Performance anomaly prediction is crucial for long running, large scale distributed systems. Many existing monitoring systems are built to analyze system logs produced by distributed systems for troubleshooting and problem diagnosis. However, inspection of such logs are non-trivial owing to the difficulty in converting text logs to vectorized data. This becomes infeasible with the increasing scale and complexity of distributed systems. Few other effective methods employ statistical learning to detect performance anomalies. However, most existing schemes assume labelled training data which requires significant human effort to create annotations and can only handle previously seen anomalies. In this paper, we present two anomaly prediction algorithms based on Self Organizing Maps and Long Short-Term Memory networks. We implemented a prototype of our system on Amazon Web Services and conducted extensive experiments to model the system behavior of Cassandra. Our analysis and results show that both these algorithms pose minimal overhead on the system and are able to predict performance anomalies with high accuracy and achieve sufficient lead time in the process.
+
+<br />System setup files and data files have been divided into seperate folders according to their functionalities. 
+
+<br />Instructions to use those files and setup system have been explained in seperate READMEs and placed in their respective folders. 
