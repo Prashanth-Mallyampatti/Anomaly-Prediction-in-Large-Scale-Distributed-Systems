@@ -1,4 +1,4 @@
-# Inject Fault using YCSB:
+# Fault injection using YCSB:
 
     yes Y | bash ./load_and_internal_fault.sh <argument>
     
@@ -10,7 +10,7 @@
 <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arguemnt '5' : to crash cassandra.
 
     
-# Inject fault using Stress-ng:
+# Fault Injection using Stress-ng:
 
     yes Y | bash ./external_fault.sh <argument>
     
