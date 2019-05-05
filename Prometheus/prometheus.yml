@@ -1,5 +1,5 @@
 # A scrape configuration scraping a Node Exporter and the Prometheus server
-# itself.
+# itself
 scrape_configs:
   # Scrape Prometheus itself every 5 seconds.
   # I dont know what this will do
