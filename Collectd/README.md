@@ -3,7 +3,7 @@
 
 Install `collectd clients` on all nodes of the distributed system and `collectd server` on a monitoring server.
 
-Note : We observed that the current collectd and generic-jmx plugin have been compiled using higher versions of `java` due to which certain features do not work in our current setup. So, in order to reproduce our setup, do replace `collectd` jar and `generic-jmx` jar with the ones ([collectd-api.jar](https://github.ncsu.edu/pmallya/Anomaly-Prediction-in-Large-Scale-Distributed Systems/blob/master/Collectd/collectd-api.jar), [generic-jmx.jar](https://github.ncsu.edu/pmallya/Anomaly-Prediction-in-Large-Scale-Distributed-Systems/blob/master/Collectd/generic-jmx.jar) provided in this repository.
+Note : We observed that the current collectd and generic-jmx plugin have been compiled using higher versions of `java` due to which certain features do not work in our current setup. So, in order to reproduce our setup, do replace `collectd` jar and `generic-jmx` jar with [collectd-api.jar](https://github.ncsu.edu/pmallya/Anomaly-Prediction-in-Large-Scale-Distributed-Systems/blob/master/Collectd/collectd-api.jar) and [generic-jmx.jar](https://github.ncsu.edu/pmallya/Anomaly-Prediction-in-Large-Scale-Distributed-Systems/blob/master/Collectd/generic-jmx.jar) respectively which are provided in this repository.
 
 Before starting with the installation, the following symbolic link must be created as collectd is unable to locate the `libjvm.so` file. Based on your java installation, execute the one that seems relevant. If you have been following our repository for the system setup, then we highly recommend you work with the same java versions as given below. Only these versions have been tested for compatibility with the the entire end-to-end system.
 
