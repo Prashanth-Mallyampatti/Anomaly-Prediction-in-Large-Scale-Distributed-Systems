@@ -74,7 +74,7 @@ sudo service cassandra stop
 sudo rm -rf /var/lib/cassandra/data
 
 #Get your own IP address
-IP_ADDR=`/sbin/ifconfig ens33 | grep 'inet' | cut -d: -f2 | awk '{ print $2}'`
+IP_ADDR=`/sbin/ifconfig eth0 | grep 'inet' | cut -d: -f2 | awk '{ print $2}'`
 
 
 #Update Cassandra Config File
