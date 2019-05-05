@@ -1,4 +1,4 @@
-Setup 3-node cassandra cluster
+Setup 3-node cassandra cluster:
     
     yes Y | bash ./cassandra.sh
     
