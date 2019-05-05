@@ -12278,7 +12278,7 @@ div#notebook {
 <span class="sd">This method represents the training phase of the algorithm.</span>
 <span class="sd">Offline training is done on the collected metric data.</span>
 <span class="sd">&#39;&#39;&#39;</span>
-<span class="k">def</span> <span class="nf">train_main</span><span class="p">(</span><span class="n">data_path</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">train_main</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">val_data_path</span><span class="p">):</span>
     
     <span class="n">input_dim</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># set to the number of nodes</span>
     <span class="n">timesteps</span> <span class="o">=</span> <span class="mi">60</span>
@@ -12717,14 +12717,25 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+
+    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;train&quot;</span><span class="p">:</span>
+        
+        <span class="c1"># check if we have sufficient arguments</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Insufficient arguments&quot;</span><span class="p">)</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;train&quot;</span><span class="p">:</span>
+        
         <span class="n">data_path</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">val_data_path</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
         <span class="n">train_main</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+        
     <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;test&quot;</span><span class="p">:</span>
+        
+        <span class="c1"># check if we have sufficient arguments</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Insufficient arguments&quot;</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+        
         <span class="n">data_path</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
         <span class="n">test_main</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
 </pre></div>

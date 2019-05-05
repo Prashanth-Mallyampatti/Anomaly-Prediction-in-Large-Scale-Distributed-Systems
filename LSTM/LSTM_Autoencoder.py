@@ -332,7 +332,7 @@ def predict(X, model, scaler):
 This method represents the training phase of the algorithm.
 Offline training is done on the collected metric data.
 '''
-def train_main(data_path):
+def train_main(data_path, val_data_path):
     
     input_dim = 3 # set to the number of nodes
     timesteps = 60
@@ -732,14 +732,25 @@ def plot_scores(data1, data2, y, xlabel, ylabel, learning_rate, filename, label1
 
 
 if __name__ == "__main__":
-    
-    if len(sys.argv) < 3:
+
+    if sys.argv[1] == "train":
+        
+        # check if we have sufficient arguments
+        if len(sys.argv) < 4:
         print("Insufficient arguments")
         sys.exit()
-    if sys.argv[1] == "train":
+        
         data_path = sys.argv[2]
+        val_data_path = sys.argv[3]
         train_main(data_path)
+        
     if sys.argv[1] == "test":
+        
+        # check if we have sufficient arguments
+        if len(sys.argv) < 3:
+        print("Insufficient arguments")
+        sys.exit()
+        
         data_path = sys.argv[2]
         test_main(data_path)
 
