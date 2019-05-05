@@ -1,1 +1,51 @@
 In order to make the proposed system work, collectd clients must be installed on all nodes of the distributed system and the monitoring server must host a collectd server.
+
+Before starting with the installation, the following symbolic link must be created as collectd is unable to locate the libjvm.so file. Based
+on your java installation, execute the one that seems relevant. If you have been following our repository for the system setup, then we
+highly recommend you work with the same java versions as given below. ONly these versions have been tested for compatibility with the
+the entire end-to-end system.
+
+ln -s /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so /usr/lib/libjvm.so
+or
+ln -s /usr/lib/jvm/java-8-oracle/jre/lib/amd64/server/libjvm.so /usr/lib/libjvm.so
+
+
+Now, below are the steps for installing collect client and server:
+
+1. Collect Client
+
+sudo apt-get update
+sudo apt-get install collectd 
+sudo apt-get install collectd-utils
+
+
+Replace the collectd.conf file found in ./etc/collectd/collectd.conf with the one provided in this repository (named collectd_client.conf). 
+After replacing, rename this file to collectd.conf. You can take a backup of the old file, just in case. After that, certain changes 
+need to be made.
+
+1. In order to send the collect metric data to the server, we need to provide a the IP address of the server. This can be done by the loading the 
+<bold>Network Plugin <bold> of collectd. Here, the IP address must be changed to the IP address of your monitoring server.
+2. Uncomment any of the other metric data, in case you wish to collect that too.
+
+After doing this, browse to /var/lib folder. You should see a csv (if you enabled csv plugin) and rrd folder. This means that your 
+installation was successful.
+
+2.Collectd Server
+
+sudo apt-get update
+sudo apt-get install collectd 
+sudo apt-get install collectd-utils
+
+Replace the collectd.conf file found in ./etc/collectd/collectd.conf with the one provided in this repository (named collectd_server.conf). 
+After replacing, rename this file to collectd.conf. You can take a backup of the old file, just in case. After that, certain changes 
+need to be made.
+
+1. Go to the <bold>Network Plugin <bold> of collectd and change the IP address to your monitoring server IP address. Ensure you use
+the same network interface. If you make any changes on that front, ensure that the client is able to ping the server at the
+configured IP.
+
+After doing this, browse to /var/lib folder. You should see a folder for each of your configured clients. On
+opening the folder, you should be able to see a csv (if you enabled csv plugin) and rrd folder. This means that your 
+installation was successful.
+
+Congratulations, you have successfully installed and configured Collectd client and server.
