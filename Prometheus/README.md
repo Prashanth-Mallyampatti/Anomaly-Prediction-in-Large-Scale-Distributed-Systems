@@ -1,3 +1,5 @@
+# Prometheus
+
 Installation and Setup of Prometheus
 
 <br />Execute the following commands to set up prometheus:
