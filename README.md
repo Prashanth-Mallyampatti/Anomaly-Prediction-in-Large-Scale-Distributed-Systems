@@ -4,12 +4,25 @@
 
 <br />System Setup, Prediction Model, and Data files have been divided into seperate folders according to their functionalities. Below are the links to each of those:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. [Cassandra System Setup](https://github.ncsu.edu/pmallya/Anomaly-Prediction-in-Large-Scale-Distributed-Systems/tree/master/Cassandra%20Setup)
-<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. [Long Short-Term Memory](https://github.ncsu.edu/pmallya/Anomaly-Prediction-in-Large-Scale-Distributed-Systems/tree/master/LSTM)
-<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. [Self Organizing Maps](https://github.ncsu.edu/pmallya/Anomaly-Prediction-in-Large-Scale-Distributed-Systems/tree/master/SOM)
-<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4. [Load Generation](https://github.ncsu.edu/pmallya/Anomaly-Prediction-in-Large-Scale-Distributed-Systems/tree/master/Load%20Generation)
-<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5. [Fault Injection](https://github.ncsu.edu/pmallya/Anomaly-Prediction-in-Large-Scale-Distributed-Systems/tree/master/Fault%20Injection)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6. [Prometheus](https://github.ncsu.edu/pmallya/Anomaly-Prediction-in-Large-Scale-Distributed-Systems/tree/master/Prometheus)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7. [CollectD](https://github.ncsu.edu/pmallya/Anomaly-Prediction-in-Large-Scale-Distributed-Systems/tree/master/Collectd)
-<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8. [Data sets](https://github.ncsu.edu/pmallya/Anomaly-Prediction-in-Large-Scale-Distributed-Systems/tree/master/Data_Sets)
+<br />System Setup:
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. [Cassandra System Setup](https://github.ncsu.edu/pmallya/Anomaly-Prediction-in-Large-Scale-Distributed-Systems/tree/master/Cassandra%20Setup)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. [Prometheus](https://github.ncsu.edu/pmallya/Anomaly-Prediction-in-Large-Scale-Distributed-Systems/tree/master/Prometheus)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. [CollectD](https://github.ncsu.edu/pmallya/Anomaly-Prediction-in-Large-Scale-Distributed-Systems/tree/master/Collectd)
+
+Load Generation:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. [Load Generation](https://github.ncsu.edu/pmallya/Anomaly-Prediction-in-Large-Scale-Distributed-Systems/tree/master/Load%20Generation)
+
+Fault Injection:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. [Fault Injection](https://github.ncsu.edu/pmallya/Anomaly-Prediction-in-Large-Scale-Distributed-Systems/tree/master/Fault%20Injection)
+
+Models:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. [Long Short-Term Memory](https://github.ncsu.edu/pmallya/Anomaly-Prediction-in-Large-Scale-Distributed-Systems/tree/master/LSTM)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. [Self Organizing Maps](https://github.ncsu.edu/pmallya/Anomaly-Prediction-in-Large-Scale-Distributed-Systems/tree/master/SOM)
+
+Data Sets:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. [Data sets](https://github.ncsu.edu/pmallya/Anomaly-Prediction-in-Large-Scale-Distributed-Systems/tree/master/Data_Sets)
