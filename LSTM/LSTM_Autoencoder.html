@@ -11788,6 +11788,7 @@ div#notebook {
 <span class="kn">from</span> <span class="nn">keras.models</span> <span class="k">import</span> <span class="n">Sequential</span><span class="p">,</span> <span class="n">Model</span><span class="p">,</span> <span class="n">load_model</span>
 <span class="kn">from</span> <span class="nn">keras.layers</span> <span class="k">import</span> <span class="n">LSTM</span><span class="p">,</span> <span class="n">Bidirectional</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">RepeatVector</span><span class="p">,</span> <span class="n">TimeDistributed</span><span class="p">,</span> <span class="n">Input</span>
 <span class="kn">from</span> <span class="nn">keras.utils</span> <span class="k">import</span> <span class="n">plot_model</span>
+<span class="kn">from</span> <span class="nn">keras.callbacks</span> <span class="k">import</span> <span class="n">ModelCheckpoint</span><span class="p">,</span> <span class="n">EarlyStopping</span>
 
 <span class="c1">#others</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -12336,8 +12337,12 @@ div#notebook {
     <span class="n">model</span> <span class="o">=</span> <span class="n">get_model</span><span class="p">(</span><span class="n">timesteps</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">)</span>
     <span class="n">model</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">metric_type</span>
     
+    <span class="c1"># define checkpoint and callbacks</span>
+    <span class="n">checkpointer</span> <span class="o">=</span> <span class="n">ModelCheckpoint</span><span class="p">(</span><span class="n">data_path</span> <span class="o">+</span> <span class="s1">&#39;model.</span><span class="si">{epoch:02d}</span><span class="s1">.hdf5&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">early_stopping</span> <span class="o">=</span> <span class="n">EarlyStopping</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span> <span class="n">min_delta</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+    
     <span class="c1"># Fit model</span>
-    <span class="n">history_callback</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.10</span><span class="p">)</span>
+    <span class="n">history_callback</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">checkpointer</span><span class="p">,</span> <span class="n">early_stopping</span><span class="p">])</span>
    
     <span class="c1"># Plot the validation and train losses</span>
 <span class="c1">#         fig = plt.figure()</span>

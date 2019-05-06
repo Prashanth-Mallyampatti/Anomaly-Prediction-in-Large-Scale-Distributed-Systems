@@ -10,6 +10,7 @@
 from keras.models import Sequential, Model, load_model
 from keras.layers import LSTM, Bidirectional, Dense, RepeatVector, TimeDistributed, Input
 from keras.utils import plot_model
+from keras.callbacks import ModelCheckpoint, EarlyStopping
 
 #others
 import pandas as pd
@@ -390,8 +391,12 @@ def train_pipeline(data, val_data, metric_type, params, data_path, timesteps, in
     model = get_model(timesteps, input_dim)
     model.name = metric_type
     
+    # define checkpoint and callbacks
+    checkpointer = ModelCheckpoint(data_path + 'model.{epoch:02d}.hdf5', verbose=1)
+    early_stopping = EarlyStopping(monitor='val_loss', min_delta=0, patience=10, verbose=1, mode='auto')
+    
     # Fit model
-    history_callback = model.fit(X, X, batch_size=32, epochs=20, validation_split=0.10)
+    history_callback = model.fit(X, X, batch_size=32, epochs=20, validation_split=0.10, callbacks=[checkpointer, early_stopping])
    
     # Plot the validation and train losses
 #         fig = plt.figure()
