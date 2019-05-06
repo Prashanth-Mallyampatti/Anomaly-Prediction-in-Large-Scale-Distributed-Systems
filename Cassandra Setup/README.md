@@ -12,7 +12,8 @@
     sudo ufw disable
     
     
-<br /> Setup 3-node cluster: Choose any 2 hosts as seed nodes and add IP addresses in `$SEED`. By default `eth0` is considered as network interface.
+<br /> Setup 3-node cluster: 
+<br />Choose any 2 hosts as seed nodes and add IP addresses in `$SEED`. By default `eth0` is considered as network interface.
 
     yes Y | bash ./cassandra.sh
     
