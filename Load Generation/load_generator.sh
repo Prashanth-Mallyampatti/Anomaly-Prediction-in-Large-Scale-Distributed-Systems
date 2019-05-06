@@ -9,8 +9,8 @@
 ################ CASSANDRA SYSTEM PATH CONFIGURATION ############################
 #################################################################################
 
-HOME=/home/varsha
-HOST=localhost  # the load generator ensures that the it is run on all the nodes in the cluster. So specify any one host only
+HOME=/home/ubuntu
+HOST=172.31.45.113,172.31.43.172,172.31.46.249  # the load generator ensures that the it is run on all the nodes in the cluster. So specify any one host only
 YCSB_HOME=$HOME/ycsb-0.15.0
 YCSB=$YCSB_HOME/bin/ycsb
 KEYSPACE=ycsb
@@ -18,20 +18,20 @@ TABLE=usertable  # this is same as column-family
 CQLSH=/usr/bin/cqlsh
 YCSB_SETUP_SCRIPT=$HOME/setup-ycsb.cql
 CLEANUP_SCRIPT=$HOME/cleanup-ycsb.cql
-DELETE_SCRIPT=$HOME/delete-ycsb.cql
+DELETE_DATA_SCRIPT=$HOME/delete-ycsb.cql
 
 #################################################################################
 ###################### LOAD GENERATOR CONFIGURATION PARAMS ######################
 #################################################################################
-
-THREAD_COUNT=128
+#operation count 200000 and record count 9000 gives around 60 % cpu and 25-37 % memory
+THREAD_COUNT=3
 THREAD_COUNT_LOW_WL=10
 FIELD=10
-OPERATION_COUNT=900000
+OPERATION_COUNT=200000
 WORKLOAD=workloads/workloada
-RECORD_COUNT=15000000
-RUN_RESULT_STORE=workloadA_run_result.txt
-LOAD_RESULT_STORE=workloadA_load_result.txt
+RECORD_COUNT=9999
+RUN_RESULT_STORE=workloadA_low_run_result.txt
+LOAD_RESULT_STORE=workloadA_low_load_result.txt
 
 
 #################################################################################
@@ -42,7 +42,7 @@ LOAD_RESULT_STORE=workloadA_load_result.txt
 #chown user:user /*  # This is necessary for files to be accessible by any user running the test
 chmod 777 $YCSB_SETUP_SCRIPT
 chmod 777 $CLEANUP_SCRIPT
-chmod 777 $DELETE_SCRIPT
+chmod 777 $DELETE_DATA_SCRIPT
 chmod 777 $HOME/*
 
 #################################################################################
@@ -70,12 +70,18 @@ delete_data()
 load_and_run_workload()
 {
     cd $YCSB_HOME
-    $YCSB load cassandra-cql -p hosts=$HOST -threads $THREAD_COUNT -p fieldcount=$FIELD -p operationcount=$OPERATION_COUNT -p recordcount=$RECORD_COUNT -p
- requestdistribution=zipfian -P $WORKLOAD -s > $LOAD_RESULT_STORE
-    $YCSB run cassandra-cql -p hosts=$HOST -threads $THREAD_COUNT -p fieldcount=$FIELD -p operationcount=$OPERATION_COUNT -p recordcount=$RECORD_COUNT -p
-requestdistribution=zipfian -P $WORKLOAD -s  > $RUN_RESULT_STORE
+    $YCSB load cassandra-cql -p hosts=$HOST -threads $THREAD_COUNT -p fieldcount=$FIELD -p operationcount=$OPERATION_COUNT -p recordcount=$RECORD_COUNT -p requestdistribution=zipfian -P $WORKLOAD -s > $LOAD_RESULT_STORE
+    $YCSB run cassandra-cql -p hosts=$HOST -threads $THREAD_COUNT -p fieldcount=$FIELD -p operationcount=$OPERATION_COUNT -p recordcount=$RECORD_COUNT -p requestdistribution=zipfian -P $WORKLOAD -s  > $RUN_RESULT_STORE
     cd $HOME
 }
+
+run_workload()
+{
+    cd $YCSB_HOME
+    $YCSB run cassandra-cql -p hosts=$HOST -threads $THREAD_COUNT -p fieldcount=$FIELD -p operationcount=$OPERATION_COUNT -p recordcount=$RECORD_COUNT -p requestdistribution=zipfian -P $WORKLOAD -s  > $RUN_RESULT_STORE
+    cd $HOME
+}
+
 
 load_and_run_small_workload()
 {
@@ -88,12 +94,21 @@ load_and_run_small_workload()
     cd $HOME
 }
 
+#delete_data
+#rm -rf /var/lib/cassandra/data/ycsb/*
+
 echo SETTING UP DATABASE TO START LOAD GENERATION
 setup_database
 echo LOADING AND RUNNING WORKLOAD PHASE STARTS
-
+#load_and_run_workload
 #load_and_run_small_workload
+for i in `seq 1 20`;
+do
+    load_and_run_workload
+done 
 
-load_and_run_workload
 #echo DONE. CLEARING ALL ENTRIES AND EXITING
-#delete_data()
+#delete_data
+
+
+rm -rf /var/lib/cassandra/data/ycsb/*
